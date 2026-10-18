@@ -1,0 +1,47 @@
+{
+  "_comment": "공개 쌍둥이 매니페스트 — 원천은 비공개 저장소이며 publish-to-public.sh가 생성한다. 직접 고치지 말 것. public=true: 공개 쌍둥이 저장소(kkh2114/claude-skills-public)에 복제되는 스킬 — publish-to-public.sh가 읽는다. postInstall: 폴더 복사 뒤 사용자가 실행할 명령(install.sh가 안내). 스킬 스코프 매니페스트 — install.sh가 읽는다. scope: global=전역 설치 권장 / project=특정 프로젝트·도메인 전용 (전역 설치 시 무관한 컨텍스트 차지, 해당 프로젝트 .claude/skills 에만 복사할 것). dependsOn: 이 스킬이 작동하려면 함께 설치돼야 하는 다른 스킬(참조 파일을 재사용 = 하드 의존). install.sh가 자동으로 함께 설치한다. optionalDependsOn: 없어도 작동하지만 있으면 품질이 오르는 스킬(호출하되 미설치 시 우아하게 스킵 = 소프트 의존). install.sh가 [권장]으로 함께 설치한다.",
+  "skills": {
+    "cartesian-review": {
+      "public": true,
+      "scope": "global",
+      "origin": "자체 제작 — 데카르트 5렌즈 검토 (하네스 Evaluator 연계)"
+    },
+    "harness-designer-workspace": {
+      "public": true,
+      "scope": "global",
+      "origin": "자체 제작 — 하네스 메타 설계 (워크스페이스)",
+      "optionalDependsOn": [
+        "cartesian-review"
+      ]
+    },
+    "harness-designer-coding": {
+      "public": true,
+      "scope": "global",
+      "origin": "자체 제작 — 하네스 메타 설계 (코딩)",
+      "optionalDependsOn": [
+        "cartesian-review"
+      ]
+    },
+    "harness-starter-workspace": {
+      "public": true,
+      "scope": "global",
+      "origin": "자체 제작 — 초보자용 하네스 (워크스페이스)"
+    },
+    "harness-starter-coding": {
+      "public": true,
+      "scope": "global",
+      "origin": "자체 제작 — 초보자용 하네스 (코딩)"
+    },
+    "karpathy-guidelines": {
+      "public": true,
+      "scope": "global",
+      "origin": "외부 참조 — 코딩 행동 지침 (범용)"
+    },
+    "notebook-research-builder": {
+      "public": true,
+      "postInstall": "bash notebook-research-builder/scripts/install.sh  (Windows: powershell -ExecutionPolicy Bypass -File notebook-research-builder\\scripts\\install.ps1)",
+      "scope": "global",
+      "origin": "자체 제작 — NotebookLM 단일 원천 2차 산출물(교안·시장조사·트렌드·논문 리뷰), jacob-bd/gemini-notebook-mcp-cli의 nlm CLI 사용. 자체 설치기(scripts/install.sh) 별도 실행 필요"
+    }
+  }
+}

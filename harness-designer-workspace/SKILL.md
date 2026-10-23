@@ -12,6 +12,9 @@ description: |
   "CLAUDE.md 만들어줘", "프로젝트 구조 잡아줘", "Council 구조 만들어줘",
   "반복 가능한 시스템", "자동화 워크플로우", "멀티 에이전트", "독립 분석",
   "다각도 분석", "build a harness", "design workspace", "agent system"
+  "~만들고 싶어" 수준의 막연한 아이디어(가치·범위 미검증)는 idea-to-spec 스킬이 있으면 그쪽이 먼저다 —
+  이 스킬은 구조를 지을 때 쓰고,
+  idea-to-spec의 spec-work/DEV_SPEC.md가 있으면 Discovery를 확인 모드로 시작한다.
   표현 시 반드시 사용.
 ---
 
@@ -151,6 +154,19 @@ Planner/Generator는 생성되는 orchestrator skill.md에 **반드시** `should
 Discovery는 4단계 질문으로 구성된다.
 각 단계를 순서대로 진행하되, 사용자 답변에 따라 후속 질문이 분기된다.
 **한 단계의 답변을 받은 후 다음 단계로 넘어간다.** 한꺼번에 묻지 않는다.
+
+### 1-0. 확인 모드 — idea-to-spec 기획서가 있을 때
+
+프로젝트에 `spec-work/DEV_SPEC.md`(idea-to-spec 산출물, WORKSPACE 유형)가 있으면 Discovery를 **확인 모드**로 진행한다. 쉬운 설명: "이미 받은 기획서에 적힌 건 다시 묻지 않고, 맞는지만 확인합니다."
+
+- 대응표 정본: idea-to-spec `references/05-final-spec.md`의 "넘겨주기 매핑표"(WORKSPACE 표). idea-to-spec이 설치돼 있지 않으면 DEV_SPEC 섹션 번호로 직접 대응한다.
+- W1~W4·S1~S6·H·E 중 대응 항목은 DEV_SPEC 내용을 요약해 보여 주고 **"맞나요? 바꿀 것만 말씀해 주세요"**로 한 번에 확인한다. 비어 있거나 서로 모순된 항목만 원래 질문으로 묻는다.
+- 만들 가치·필요성은 다시 묻지 않는다 (idea-to-spec이 GO 판정함).
+- DEV_SPEC의 **정책은 그대로 반영하고 다시 설계하지 않는다**: 12(훅·서브에이전트)·14(개입 등급 R0/R1/R2)·19(차단기 값)·20(보안)·24(개입 수준)는 Build 산출물에, 16 Checker 3단은 Evaluate 단계의 검증 프로토콜에 옮긴다. 정책을 바꿔야 할 이유가 보이면 바꾸지 말고 사용자에게 묻는다.
+- Phase 0(harness-100 exemplar 매칭)과 Build·Evaluate는 이 스킬의 원래 절차대로 수행한다.
+- 사용자가 "기획서 무시하고 처음부터"라고 하면 일반 Discovery로 진행한다.
+- 확인 모드에서는 위 "한 단계씩, 한꺼번에 묻지 않는다" 규칙 대신 **대응 항목을 한 번에 확인**한다 (이미 답이 있으므로). 빈 항목 질문은 다시 한 단계씩.
+- DEV_SPEC 16의 Tier 2(빌드 산출물을 다른 모델이 검토)는 이 스킬 Evaluate 단계의 검증 방식이다. 운영층 Council의 **Reviewer 에이전트**(업무 결과 교차검증)와는 다른 역할이니 섞지 않는다.
 
 ### 1-1. Stage 1 — 목적과 맥락 (WHY / WHO)
 

@@ -124,3 +124,25 @@ CLAUDE.md는 **목차(table of contents)**다. 백과사전이 아니다.
 **업데이트 안 하는 경우**
 → 새 폴더·에이전트 추가 시 CLAUDE.md + WORKSPACE_TREE.md 동기화 필수.
 → maintenance-protocol.md의 검토 주기를 따른다.
+
+---
+
+## bkit 설치 환경 격리 규칙 (선택 섹션 — bkit 설치 시 적용)
+
+Generator는 생성하는 CLAUDE.md에 이 섹션을 포함할 수 있다.
+**이식성**: bkit 미설치 PC에서는 no-op으로 안전하게 무시된다.
+
+```markdown
+## 외부 툴킷 격리 규칙 (bkit 설치 환경에서 적용)
+
+이 워크스페이스의 에이전트 독립성은 Council Mode가 보장한다.
+bkit 오케스트레이터는 이 워크스페이스에서 비활성이다:
+- CTO-lead, pm-lead, sprint-orchestrator: 호출 금지 (Chairman이 종합 담당)
+- PDCA Do/Check/Act 자동 진행: 금지
+- code-analyzer, gap-detector: 이 워크스페이스 산출물에 독립 실행 금지
+- independence-protocol은 bkit 오케스트레이터 패턴으로 대체 불가
+- Domain frameworks (Porter's, IRAC, Bloom's 등)는 외부 에이전트 제안으로 수정 불가
+```
+
+**주의**: 허용 선언은 넣지 않는다. 허용은 Claude의 자연 판단에 위임한다.
+bkit 없는 PC에서 허용 선언이 있으면 Claude가 존재하지 않는 스킬을 찾으려 한다.
